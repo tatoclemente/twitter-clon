@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 
 
 export function AuthButton({ session }: { session: Session | null }) {
-    // const [session, setSession] = useState<Session | null>(null)
+    // const [session, setSession] = useState<Session | null>(null)  // <-- This is the way to do it with a client component
 
     const router = useRouter()
 
@@ -31,6 +31,9 @@ export function AuthButton({ session }: { session: Session | null }) {
         router.refresh()
       }
 
+      // This is the way to do it with a client component
+      //________________________________________________________
+
       // useEffect(() => {
       //   const getSession = async () => {
       //       const { data } = await supabase.auth.getSession()
@@ -39,7 +42,6 @@ export function AuthButton({ session }: { session: Session | null }) {
       //   getSession()
       // })
 
-      console.log(session);
       
   return (
   
