@@ -1,6 +1,6 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { cookies } from 'next/headers'
-import { AuthBotton } from './components/auth-botton'
+import { AuthButtonServer } from './components/auth-botton-server'
 
 
 export default async function Home () {
@@ -21,7 +21,7 @@ export default async function Home () {
   const { data: posts } = await supabase.from('posts').select('*')
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <AuthBotton />
+      <AuthButtonServer />
 
       <pre>{JSON.stringify(posts, null, 2)}</pre> 
     </main>
