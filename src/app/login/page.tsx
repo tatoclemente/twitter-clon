@@ -2,7 +2,7 @@
 // import { cookies } from 'next/headers'
 // import { redirect } from 'next/navigation'
 
-import { AuthButtonServer } from '@/app/components/auth-botton-server'
+import { AuthButtonServer } from '@/app/auth/callback/auth-botton-server'
 
 export default function Login() {
     return (

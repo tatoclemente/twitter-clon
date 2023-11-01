@@ -4,6 +4,7 @@ import { createBrowserClient} from '@supabase/ssr'
 import { Session } from "@supabase/gotrue-js/src/lib/types"
 // import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Button } from '@nextui-org/button';
 
 
 export function AuthButton({ session }: { session: Session | null }) {
@@ -30,18 +31,6 @@ export function AuthButton({ session }: { session: Session | null }) {
         await supabase.auth.signOut()
         router.refresh()
       }
-
-      // This is the way to do it with a client component
-      //________________________________________________________
-
-      // useEffect(() => {
-      //   const getSession = async () => {
-      //       const { data } = await supabase.auth.getSession()
-      //       setSession(data.session)
-      //   }
-      //   getSession()
-      // })
-
       
   return (
   
@@ -56,7 +45,7 @@ export function AuthButton({ session }: { session: Session | null }) {
         </svg>
         Sign in with Github
         </button> 
-        ) : <button onClick={handleSingOut}>Sing Out</button>
+        ) : <Button onClick={handleSingOut}>Sing Out</Button>
     
         }
     </header>
