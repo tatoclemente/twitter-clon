@@ -1,6 +1,7 @@
 import { PostCard } from "./post-card"
+import { type Post } from '@/app/types/posts'
 
-export function PostList({posts}) {
+export function PostList({posts}: {posts: Post[]}) {
     return (
         <div>
              {
@@ -8,7 +9,7 @@ export function PostList({posts}) {
           const {
             id,
             users,
-            content
+            content 
            } = post
 
            const {
