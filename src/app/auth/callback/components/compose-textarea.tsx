@@ -1,33 +1,38 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from "react"
-import { useFormStatus } from 'react-dom'
+import { useEffect, useRef } from "react";
+import { Textarea } from "@nextui-org/react";
+
+//@ts-ignore
+import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 export function ComposeTextArea() {
-    let pending = true
+  const { pending } = useFormStatus();
+  const alreadySent = useRef(false);
+  const textAreaRef = useRef<HTMLInputElement>(null);
 
-    const alreadySent = useRef(false)
-    const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  useEffect(() => {
+    if (textAreaRef.current === null) return;
 
-    
-    useEffect(() => {
-        if (textAreaRef.current === null) return
+    if (!pending && alreadySent.current) {
+      alreadySent.current = false;
+      textAreaRef.current.value = "";
+      return;
+    }
 
-        if (alreadySent.current) {
-            alreadySent.current = false
-            textAreaRef.current.value = ''
-        }
+    alreadySent.current = pending;
+  }, [pending]);
 
-        alreadySent.current = !pending
-    }, [alreadySent])
-
-    return (
-        <textarea 
-        ref={textAreaRef}
-        name="content" 
-        rows={4}
-        className='w-full text-2xl ml-2 pl-2 bg-white placeholder-gray-500'
-        placeholder='¡¿Qué está pasando?!'
-        ></textarea>
-    )
+  return (
+    <input
+      autoComplete="off"
+      type="text"
+      ref={textAreaRef}
+      name="content"
+      // rows={4}
+      className="w-full text-2xl ml-2 pl-2 bg-white placeholder-gray-500"
+      //  className="col-span-12 md:col-span-6 mb-6 md:mb-0"
+      placeholder="¡¿Qué está pasando?!"
+    />
+  );
 }

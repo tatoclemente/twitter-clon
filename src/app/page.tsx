@@ -36,7 +36,7 @@ export default async function Home () {
   .order('created_at', { ascending: false })
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <section className='min-w-[600px] pt-2 mx-auto border-r border-l border-black/20 min-h-screen'>
+      <section className='sm:max-w-full lg:w-[600px] pt-2 mx-auto border-r border-l border-slate-200 min-h-screen'>
         <ComposePost userAvatarUrl={session.user?.user_metadata?.avatar_url}/>
         <PostList posts={posts}/>
       </section> 
