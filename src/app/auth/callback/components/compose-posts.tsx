@@ -22,15 +22,16 @@ export function ComposePost({ userAvatarUrl }: { userAvatarUrl: string }) {
     const {value} = e.target;
     setState(value);
   }
+  
 
   return (
     <form
       ref={formRef}
       action={async (formData) => {
-
         // if (formRef.current?.nodeValue === '') return
         await addPost(formData);
         formRef.current?.reset();
+        
       }}
       className="flex flex-1 flex-col gap-y-4 p-3 border-b border-slate-200"
     >
@@ -52,7 +53,12 @@ export function ComposePost({ userAvatarUrl }: { userAvatarUrl: string }) {
           placeholder="¡¿Qué está pasando?!"
         />
       </div>
-      <button disabled={disabled} className="bg-[#1D9CF0] text-white font-bold rounded-full w-24 px5 py-1.5 self-end disabled:opacity-50">
+      <button onClick={(event) => {
+         event.stopPropagation()
+         event.preventDefault()
+        setDisabled(true);
+        formRef.current?.requestSubmit();
+      }} disabled={disabled} className="bg-[#1D9CF0] text-white font-bold rounded-full w-24 px5 py-1.5 self-end disabled:opacity-50">
         Postear
       </button>
     </form>
